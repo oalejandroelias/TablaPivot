@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import Alerta from "../components/Alerta";
 import ThemeToggle from "../components/ThemeToggle";
+import userAxios from "../config/UserAxios";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -19,7 +21,7 @@ const Login = () => {
     }
 
     try {
-      const { data } = await clienteAxios.post(`/usuarios/login`, {
+      const { data } = await userAxios.post(`/usuarios/login`, {
         email: email,
         password: password,
       });
@@ -38,7 +40,6 @@ const Login = () => {
 
   return (
     <>
-      {/* <ThemeToggle /> */}
       <div className="overflow-hidden bg-gray-900">
         <div className="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
           <div className="flex flex-col items-center justify-between xl:flex-row">
@@ -82,6 +83,7 @@ const Login = () => {
                     className="my-10 bg-white shadow rounded-lg p-10"
                     onSubmit={handleSubmit}
                   >
+                    {msg && <Alerta alerta={alerta} />}
                     <div className="mb-1 sm:mb-2">
                       <label
                         htmlFor="name"
@@ -96,6 +98,9 @@ const Login = () => {
                         className="flex-grow w-full h-12 px-4 mb-2 transition duration-200 bg-white border border-gray-300 rounded shadow-sm appearance-none focus:border-deep-purple-accent-400 focus:outline-none focus:shadow-outline"
                         id="email"
                         name="email"
+                        onChange={(e) => {
+                          setEmail(e.target.value);
+                        }}
                       />
                     </div>
                     <div className="mb-1 sm:mb-2">
@@ -108,10 +113,11 @@ const Login = () => {
                       <input
                         placeholder="XXXXXXX"
                         required
-                        type="text"
+                        type="password"
                         className="flex-grow w-full h-12 px-4 mb-2 transition duration-200 bg-white border border-gray-300 rounded shadow-sm appearance-none focus:border-deep-purple-accent-400 focus:outline-none focus:shadow-outline"
                         id="password"
                         name="password"
+                        onChange={(e) => setPassword(e.target.value)}
                       />
                     </div>
                     <div className="mt-4 mb-2 sm:mb-4">
