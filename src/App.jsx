@@ -1,21 +1,29 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
 import './App.css'
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import PivotTableDemo from './components/PivotTable'
 import PivotTable from './components/PivotTable'
 import TablaPivot from './components/TablaPivotB'
 import ReadExcel from './components/ReadExcel'
+import Login from './pages/Login';
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
-    <div className="App">
+    <BrowserRouter>
+      <Routes>
+        <Route path="/">
+          <Route index element={<Login />} />
+
+        </Route>
+      </Routes>
+    </BrowserRouter>
+    // <div className="App">
       
-      <TablaPivot />
-      <ReadExcel />
+    //   <TablaPivot />
+    //   <ReadExcel />
       
-    </div>
+    // </div>
   )
 }
 
