@@ -12,7 +12,7 @@ const Login = () => {
 
   useEffect(() => {
     axios
-      .get("https://ovcm.biamobile.com/api/web/registros/2")
+      .get("https://ovcm.biamobile.com/api/web/usuarios")
       .then((response) => {
         console.log(response.data);
       });
