@@ -1,13 +1,22 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Alerta from "../components/Alerta";
 import ThemeToggle from "../components/ThemeToggle";
 import userAxios from "../config/UserAxios";
+import axios from "axios";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [alerta, setAlerta] = useState({});
+
+  useEffect(() => {
+    axios
+      .get("https://ovcm.biamobile.com/api/web/registros/2")
+      .then((response) => {
+        console.log(response.data);
+      });
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
