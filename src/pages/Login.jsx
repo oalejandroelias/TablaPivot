@@ -14,7 +14,14 @@ const Login = () => {
     axios
       .get("https://ovcm.biamobile.com/api/web/usuarios")
       .then((response) => {
-        console.log(response.data);
+        return response.data;
+        //console.log(response.data);
+      })
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((error) => {
+        console.log(error.response);
       });
   }, []);
 
