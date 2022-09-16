@@ -12,7 +12,7 @@ const Login = () => {
 
   useEffect(() => {
     axios
-      .get("https://ovcm.biamobile.com/api/web/usuarios")
+      .get("https://jsonplaceholder.typicode.com/posts")
       .then((response) => {
         return response.data;
         //console.log(response.data);
