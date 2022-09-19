@@ -22,8 +22,6 @@ function App() {
         </Route>
         <Route path="/listado">
           <Route index element={<Listado />} />
-    
-
         </Route>
       </Routes>
     </BrowserRouter>
