@@ -1,29 +1,35 @@
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import Listado from "../pages/Listado";
 import Alerta from "../components/Alerta";
 import ThemeToggle from "../components/ThemeToggle";
 import userAxios from "../config/UserAxios";
 import axios from "axios";
+import useAuth from "../hooks/useAuth";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [alerta, setAlerta] = useState({});
 
-  useEffect(() => {
-    axios
-      .get("https://jsonplaceholder.typicode.com/posts")
-      .then((response) => {
-        return response.data;
-        //console.log(response.data);
-      })
-      .then((data) => {
-        console.log(data);
-      })
-      .catch((error) => {
-        console.log(error.response);
-      });
-  }, []);
+  const { setAuth } = useAuth();
+
+  const navigate = useNavigate();
+
+  // useEffect(() => {
+  //   axios
+  //     .get("https://jsonplaceholder.typicode.com/posts")
+  //     .then((response) => {
+  //       return response.data;
+  //       //console.log(response.data);
+  //     })
+  //     .then((data) => {
+  //       console.log(data);
+  //     })
+  //     .catch((error) => {
+  //       console.log(error.response);
+  //     });
+  // }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -44,6 +50,7 @@ const Login = () => {
       setAlerta({});
       localStorage.setItem("token", data.token);
       setAuth(data);
+      navigate("/listado");
     } catch (error) {
       setAlerta({
         msg: error.response.data.msg,

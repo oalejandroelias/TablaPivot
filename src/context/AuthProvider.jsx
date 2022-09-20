@@ -1,12 +1,9 @@
-import axios from "axios";
-import { useEffect, useState, createContext, Children } from "react";
+import { useState, useEffect, createContext } from "react";
 import { useNavigate } from "react-router-dom";
-import clienteAxios from "../config/clienteAxios";
-import userAxios from "../config/UserAxios";
-
+import userAxios from "../config/userAxios";
 const AuthContext = createContext();
 
-const AuthProvider = (children) => {
+const AuthProvider = ({ children }) => {
   const [auth, setAuth] = useState({});
   const [cargando, setCargando] = useState(true);
 
@@ -17,7 +14,8 @@ const AuthProvider = (children) => {
       const token = localStorage.getItem("token");
 
       if (!token) {
-        return setCargando(false);
+        setCargando(false);
+        return;
       }
 
       const config = {
@@ -28,22 +26,28 @@ const AuthProvider = (children) => {
       };
 
       try {
-        const { data } = await userAxios.get("usuarios/perfil", config);
+        const { data } = await userAxios.get("/usuarios/perfil", config);
         setAuth(data);
+        // navigate("/proyectos");
 
         console.log(data);
       } catch (error) {
         setAuth({});
       } finally {
-        setCargando(false);
+        setCargando(false); //Para que no redireccione al login cuando estoy logueado
       }
     };
-
     autenticarUsuario();
   }, []);
 
   return (
-    <AuthContext.Provider value={{ auth, setAuth, cargando }}>
+    <AuthContext.Provider
+      value={{
+        auth,
+        setAuth,
+        cargando,
+      }}
+    >
       {children}
     </AuthContext.Provider>
   );
