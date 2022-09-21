@@ -14,7 +14,7 @@ const RutaProtegida = () => {
         <div className="bg-gray-100">
           <Header />
           <div className="md:flex md:min-h-screen ">
-            <Sidebar />
+            {/* <Sidebar /> */}
 
             <main className="p-10 flex-1">
               <Outlet />

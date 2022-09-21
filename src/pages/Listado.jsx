@@ -6,6 +6,8 @@ import {
   useQuery,
 } from "@tanstack/react-query";
 import axios from "axios";
+import useIntervenciones from "../hooks/useIntervenciones";
+import userAxios from "../config/userAxios";
 
 const Example = () => {
   const [columnFilters, setColumnFilters] = useState([]);
@@ -15,6 +17,10 @@ const Example = () => {
     pageIndex: 0,
     pageSize: 10,
   });
+
+  const { intervenciones } = useIntervenciones();
+
+  console.log(intervenciones);
 
   /**La API debe poder implementar peticiones de paginado */
   const { data, isError, isFetching, isLoading } = useQuery(
@@ -28,7 +34,11 @@ const Example = () => {
     ],
     async () => {
       //const url = new URL("/api/data", "https://www.material-react-table.com");
-      const url = new URL("/posts", "https://jsonplaceholder.typicode.com");
+      //const url = new URL("/posts", "https://jsonplaceholder.typicode.com");
+      const url = new URL(
+        "/intervenciones",
+        `${import.meta.env.VITE_BACKEND_URL}/api`
+      );
       url.searchParams.set(
         "start",
         `${pagination.pageIndex * pagination.pageSize}`
@@ -73,11 +83,11 @@ const Example = () => {
   const columns = useMemo(
     () => [
       {
-        accessorKey: "title",
+        accessorKey: "descripcion",
         header: "First Name",
       },
       {
-        accessorKey: "body",
+        accessorKey: "direccion",
         header: "Last Name",
       },
     ],

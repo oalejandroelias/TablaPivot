@@ -10,23 +10,29 @@ import Registrar from "./pages/Registrar";
 import OlvidePassword from "./pages/OlvidePassword";
 import NuevoPassword from "./pages/NuevoPassword";
 import ConfirmarCuenta from "./pages/ConfirmarCuenta";
+import { IntervencionesProvider } from "./context/IntervencionesProvider";
 
 function App() {
   return (
     <BrowserRouter>
       <AuthProvider>
-        <Routes>
-          <Route path="/" element={<AuthLayout />}>
-            <Route index element={<Login />} />
-            <Route path="registrar" element={<Registrar />} />
-            <Route path="olvide-password" element={<OlvidePassword />} />
-            <Route path="olvide-password/:token" element={<NuevoPassword />} />
-            <Route path="confirmar/:id" element={<ConfirmarCuenta />} />
-          </Route>
-          <Route path="/listado" element={<RutaProtegida />}>
-            <Route index element={<Listado />} />
-          </Route>
-        </Routes>
+        <IntervencionesProvider>
+          <Routes>
+            <Route path="/" element={<AuthLayout />}>
+              <Route index element={<Login />} />
+              <Route path="registrar" element={<Registrar />} />
+              <Route path="olvide-password" element={<OlvidePassword />} />
+              <Route
+                path="olvide-password/:token"
+                element={<NuevoPassword />}
+              />
+              <Route path="confirmar/:id" element={<ConfirmarCuenta />} />
+            </Route>
+            <Route path="/listado" element={<RutaProtegida />}>
+              <Route index element={<Listado />} />
+            </Route>
+          </Routes>
+        </IntervencionesProvider>
       </AuthProvider>
     </BrowserRouter>
     // <div className="App">
