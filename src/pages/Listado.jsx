@@ -95,36 +95,38 @@ const Example = () => {
   );
 
   return (
-    <MaterialReactTable
-      columns={columns}
-      data={data ?? []}
-      initialState={{ showColumnFilters: true }}
-      manualFiltering
-      manualPagination
-      manualSorting
-      muiToolbarAlertBannerProps={
-        isError
-          ? {
-              color: "error",
-              children: "Error loading data",
-            }
-          : undefined
-      }
-      onColumnFiltersChange={setColumnFilters}
-      onGlobalFilterChange={setGlobalFilter}
-      onPaginationChange={setPagination}
-      onSortingChange={setSorting}
-      rowCount={data?.meta?.totalRowCount ?? 0}
-      state={{
-        columnFilters,
-        globalFilter,
-        isLoading,
-        pagination,
-        showAlertBanner: isError,
-        showProgressBars: isFetching,
-        sorting,
-      }}
-    />
+    <>
+      <MaterialReactTable
+        columns={columns}
+        data={data ?? []}
+        initialState={{ showColumnFilters: true }}
+        manualFiltering
+        manualPagination
+        manualSorting
+        muiToolbarAlertBannerProps={
+          isError
+            ? {
+                color: "error",
+                children: "Error loading data",
+              }
+            : undefined
+        }
+        onColumnFiltersChange={setColumnFilters}
+        onGlobalFilterChange={setGlobalFilter}
+        onPaginationChange={setPagination}
+        onSortingChange={setSorting}
+        rowCount={data?.meta?.totalRowCount ?? 0}
+        state={{
+          columnFilters,
+          globalFilter,
+          isLoading,
+          pagination,
+          showAlertBanner: isError,
+          showProgressBars: isFetching,
+          sorting,
+        }}
+      />
+    </>
   );
 };
 
