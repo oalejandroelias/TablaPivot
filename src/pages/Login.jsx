@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import Listado from "../pages/Listado";
 import Alerta from "../components/Alerta";
 import ThemeToggle from "../components/ThemeToggle";
-import userAxios from "../config/UserAxios";
+import userAxios from "../config/userAxios";
 import axios from "axios";
 import useAuth from "../hooks/useAuth";
 
