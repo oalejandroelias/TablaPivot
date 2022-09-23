@@ -10,6 +10,49 @@ const Encuesta = () => {
       value: "mujer_cis",
       label: "Mujer Cis",
     },
+    {
+      value: "varon_trans",
+      label: "Varon Trans",
+    },
+    {
+      value: "mujer_trans",
+      label: "Mujer Trans",
+    },
+    {
+      value: "no_binaria",
+      label: "Persona no binaria",
+    },
+    {
+      value: "intersex",
+      label: "Intersex",
+    },
+  ];
+
+  const optionsOrientacionSexual = [
+    {
+      value: "heterosexual",
+      label: "Heterosexual",
+    },
+    {
+      value: "gay",
+      label: "Gay",
+    },
+    {
+      value: "lesbiana",
+      label: "Lesbiana",
+    },
+    {
+      value: "bisexual",
+      label: "Bisexual",
+    },
+    {
+      value: "pansexual",
+      label: "Pansexual",
+    },
+    {
+      value: "asexual",
+      label: "Asexual",
+    },
   ];
   const optionsDni = [
     {
