@@ -1,6 +1,46 @@
-import React from "react";
+import { useState } from "react";
 
 const Encuesta = () => {
+  const optionsGenero = [
+    {
+      value: "varon_cis",
+      label: "Varon Cis",
+    },
+    {
+      value: "mujer_cis",
+      label: "Mujer Cis",
+    },
+  ];
+  const optionsDni = [
+    {
+      value: "dni",
+      label: "DNI/DU",
+    },
+    {
+      value: "lc",
+      label: "LC",
+    },
+    {
+      value: "le",
+      label: "LE",
+    },
+    {
+      value: "ci",
+      label: "CI",
+    },
+    {
+      value: "pasaporte",
+      label: "Pasaporte",
+    },
+  ];
+
+  const [demanda, setDemanda] = useState("");
+  const [nombre, setNombre] = useState("");
+  const [apellido, setApellido] = useState("");
+  const [email, setEmail] = useState("");
+  const [tipoDoc, setTipoDoc] = useState(optionsDni[0].value);
+  const [tipoGenero, setTipoGenero] = useState(optionsGenero[0].value);
+
   return (
     <>
       <section className="bg-gray-100">
@@ -27,52 +67,126 @@ const Encuesta = () => {
 
             <div className="p-8 bg-white rounded-lg shadow-lg lg:p-12 lg:col-span-3">
               <form action="" className="space-y-4">
-                <div>
-                  <label className="sr-only" htmlFor="name">
-                    Nombres Autopercibidos
-                  </label>
-                  <input
-                    className="w-full rounded bg-transparent border border-black dark:border-white focus:border-pink-700 dark:focus:border-pink-700 text-base outline-none text-black dark:text-white py-1 px-3 leading-8 transition-colors"
-                    placeholder="Nombres Autopercibidos"
-                    type="text"
-                    id="name"
-                  />
-                </div>
+                <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                  <div>
+                    <label className="" htmlFor="nombre">
+                      Nombres Autopercibidos
+                    </label>
+                    <input
+                      className="w-full rounded bg-transparent border border-black dark:border-white focus:border-pink-700 dark:focus:border-pink-700 text-base outline-none text-black dark:text-white py-1 px-3 leading-8 transition-colors"
+                      placeholder="Nombres Autopercibidos"
+                      type="text"
+                      id="nombfre"
+                      onChange={(e) => {
+                        setNombre(e.target.value);
+                      }}
+                    />
+                  </div>
 
-                <div>
-                  <label className="sr-only" htmlFor="name">
-                    Apellidos
-                  </label>
-                  <input
-                    className="w-full rounded bg-transparent border border-black dark:border-white focus:border-pink-700 dark:focus:border-pink-700 text-base outline-none text-black dark:text-white py-1 px-3 leading-8 transition-colors"
-                    placeholder="Nombres Autopercibidos"
-                    type="text"
-                    id="name"
-                  />
+                  <div>
+                    <label className="" htmlFor="apellido">
+                      Apellidos
+                    </label>
+                    <input
+                      className="w-full rounded bg-transparent border border-black dark:border-white focus:border-pink-700 dark:focus:border-pink-700 text-base outline-none text-black dark:text-white py-1 px-3 leading-8 transition-colors"
+                      placeholder="Apellidos"
+                      type="text"
+                      id="apellido"
+                      onChange={(e) => {
+                        setApellido(e.target.value);
+                      }}
+                    />
+                  </div>
                 </div>
 
                 <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                   <div>
-                    <label className="sr-only" htmlFor="email">
+                    <label className="" htmlFor="email">
                       Email
                     </label>
                     <input
                       className="w-full rounded bg-transparent border border-black dark:border-white focus:border-pink-700 dark:focus:border-pink-700 text-base outline-none text-black dark:text-white py-1 px-3 leading-8 transition-colors"
-                      placeholder="Email address"
+                      placeholder="Email"
                       type="email"
                       id="email"
                     />
                   </div>
 
                   <div>
-                    <label className="sr-only" htmlFor="phone">
-                      Phone
+                    <label className="" htmlFor="telefono">
+                      Teléfono
                     </label>
                     <input
                       className="w-full rounded bg-transparent border border-black dark:border-white focus:border-pink-700 dark:focus:border-pink-700 text-base outline-none text-black dark:text-white py-1 px-3 leading-8 transition-colors"
-                      placeholder="Phone Number"
-                      type="tel"
-                      id="phone"
+                      placeholder="Teléfono"
+                      type="text"
+                      id="telefono"
+                    />
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                  <div>
+                    <label className="" htmlFor="tipo_doc">
+                      Tipo Documento
+                    </label>
+
+                    <select
+                      className="w-full py-2 px-3 rounded bg-transparent border border-black dark:border-white focus:border-pink-700 dark:focus:border-pink-700 text-base outline-none text-black dark:text-white"
+                      name="tipo_doc"
+                      id="tipo_doc"
+                      onChange={(e) => setTipoDoc(e.target.value)}
+                    >
+                      {optionsDni.map((o) => (
+                        <option key={o.value} value={o.value}>
+                          {o.label}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+
+                  <div>
+                    <label className="" htmlFor="telefono">
+                      Documento - Especificar
+                    </label>
+                    <input
+                      className="w-full rounded bg-transparent border border-black dark:border-white focus:border-pink-700 dark:focus:border-pink-700 text-base outline-none text-black dark:text-white py-1 px-3 leading-8 transition-colors"
+                      placeholder="Documento - Especificar"
+                      type="text"
+                      id="telefono"
+                    />
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                  <div>
+                    <label className="" htmlFor="tipo_doc">
+                      Género Autopercibido
+                    </label>
+
+                    <select
+                      className="w-full py-2 px-3 rounded bg-transparent border border-black dark:border-white focus:border-pink-700 dark:focus:border-pink-700 text-base outline-none text-black dark:text-white"
+                      name="genero_auto"
+                      id="genero_auto"
+                      onChange={(e) => setTipoDoc(e.target.value)}
+                    >
+                      {optionsGenero.map((o) => (
+                        <option key={o.value} value={o.value}>
+                          {o.label}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+
+                  <div>
+                    <label className="" htmlFor="telefono">
+                      Documento - Especificar
+                    </label>
+                    <input
+                      className="w-full rounded bg-transparent border border-black dark:border-white focus:border-pink-700 dark:focus:border-pink-700 text-base outline-none text-black dark:text-white py-1 px-3 leading-8 transition-colors"
+                      placeholder="Documento - Especificar"
+                      type="text"
+                      id="telefono"
                     />
                   </div>
                 </div>
@@ -80,7 +194,7 @@ const Encuesta = () => {
                 <div className="text-center grid grid-cols-1 gap-4 sm:grid-cols-3">
                   <div>
                     <input
-                      className="sr-only"
+                      className=""
                       id="option1"
                       type="radio"
                       tabIndex="-1"
@@ -96,7 +210,7 @@ const Encuesta = () => {
 
                   <div>
                     <input
-                      className="sr-only"
+                      className=""
                       id="option2"
                       type="radio"
                       tabIndex="-1"
@@ -112,7 +226,7 @@ const Encuesta = () => {
 
                   <div>
                     <input
-                      className="sr-only"
+                      className=""
                       id="option3"
                       type="radio"
                       tabIndex="-1"
@@ -128,14 +242,17 @@ const Encuesta = () => {
                 </div>
 
                 <div>
-                  <label className="sr-only" htmlFor="message">
-                    Message
+                  <label className="" htmlFor="motivo">
+                    Motivo de la demanda
                   </label>
                   <textarea
                     className="w-full rounded bg-transparent border border-black dark:border-white focus:border-pink-700 dark:focus:border-pink-700 text-base outline-none text-black dark:text-white py-1 px-3 leading-8 transition-colors"
                     placeholder="Motivo de la demanda"
                     rows="8"
-                    id="message"
+                    id="motivo"
+                    onChange={(e) => {
+                      setDemanda(e.target.value);
+                    }}
                   ></textarea>
                 </div>
 
@@ -144,7 +261,7 @@ const Encuesta = () => {
                     type="submit"
                     className="inline-flex items-center justify-center w-full px-5 py-3 text-white bg-black rounded-lg sm:w-auto"
                   >
-                    <span className="font-medium"> Send Enquiry </span>
+                    <span className="font-medium"> Continuar </span>
 
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
