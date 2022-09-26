@@ -29,7 +29,21 @@ const AuthProvider = ({ children }) => {
         const { data } = await userAxios.get("/usuarios/perfil", config);
         setAuth(data);
         // navigate("/proyectos");
-      } catch (error) {
+      } catch (err) {
+        if (err.response) {
+          // 👇️ log status code here
+          console.log(err.response.status);
+          console.log(err.response.statusText);
+          console.log(err.message);
+          console.log(err.response.headers); // 👉️ {... response headers here}
+          console.log(err.response.data); // 👉️ {... response data here}
+        } else if (error.request) {
+          // 👇️ Request was made, but no response was received
+          console.log(error.request);
+        } else {
+          // 👇️ An error was thrown when setting up the request
+          console.log(error.message);
+        }
         setAuth({});
       } finally {
         setCargando(false); //Para que no redireccione al login cuando estoy logueado

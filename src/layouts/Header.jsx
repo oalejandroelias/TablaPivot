@@ -1,6 +1,10 @@
 import { Link } from "react-router-dom";
 
 const Header = () => {
+  const logout = async () => {
+    localStorage.clear();
+    window.location.href = "/";
+  };
   return (
     <header class="shadow-sm">
       <div class="flex items-center justify-between h-16 px-4 mx-auto max-w-screen-xl">
@@ -88,18 +92,22 @@ const Header = () => {
         </nav>
 
         <div class="items-center hidden gap-4 lg:flex">
-          <a
-            class="px-5 py-2 text-sm font-medium text-gray-600 bg-gray-100 rounded-lg"
-            href=""
-          >
-            Log in
-          </a>
-          <a
-            class="px-5 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg"
-            href=""
-          >
-            Sign up
-          </a>
+          {localStorage.getItem("token") !== null ? (
+            <a
+              class="px-5 py-2 text-sm font-medium text-gray-600 bg-gray-100 rounded-lg"
+              href=""
+              onClick={() => logout()}
+            >
+              Salir
+            </a>
+          ) : (
+            <a
+              class="px-5 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg"
+              href=""
+            >
+              Entrar
+            </a>
+          )}
         </div>
       </div>
 
