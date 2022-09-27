@@ -47,15 +47,24 @@ const Login = () => {
         email: email,
         password: password,
       });
+
       setAlerta({});
       localStorage.setItem("token", data.token);
       setAuth(data);
       navigate("/listado");
     } catch (error) {
-      setAlerta({
-        msg: error.response.data.msg,
-        error: true,
-      });
+      if (error.code === "ERR_NETWORK") {
+        setAlerta({
+          msg: "No se puede conectar con el servidor",
+          error: true,
+        });
+      }
+      // else {
+      //   setAlerta({
+      //     msg: error.response.data.msg,
+      //     error: true,
+      //   });
+      // }
     }
   };
 

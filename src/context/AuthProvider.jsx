@@ -29,14 +29,22 @@ const AuthProvider = ({ children }) => {
         const { data } = await userAxios.get("/usuarios/perfil", config);
         setAuth(data);
         // navigate("/proyectos");
-      } catch (err) {
-        if (err.response) {
+      } catch (error) {
+        if (error.response) {
+          /**Ver si el alert sirve aca */
+          if (error.code === "ERR_NETWORK") {
+            setAlerta({
+              msg: "No se puede conectar con el servidor",
+              error: true,
+            });
+          }
+          /**Ver si el alert sirve aca */
           // 👇️ log status code here
-          console.log(err.response.status);
-          console.log(err.response.statusText);
-          console.log(err.message);
-          console.log(err.response.headers); // 👉️ {... response headers here}
-          console.log(err.response.data); // 👉️ {... response data here}
+          console.log(error.response.status);
+          console.log(error.response.statusText);
+          console.log(error.message);
+          console.log(error.response.headers); // 👉️ {... response headers here}
+          console.log(error.response.data); // 👉️ {... response data here}
         } else if (error.request) {
           // 👇️ Request was made, but no response was received
           console.log(error.request);

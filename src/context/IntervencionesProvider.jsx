@@ -27,7 +27,12 @@ const IntervencionesProvider = ({ children }) => {
 
         setIntervenciones(data);
       } catch (error) {
-        console.error(error);
+        if (error.code === "ERR_NETWORK") {
+          setAlerta({
+            msg: "No se puede conectar con el servidor",
+            error: true,
+          });
+        }
       }
     };
 
