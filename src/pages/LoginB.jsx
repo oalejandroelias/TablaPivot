@@ -1,6 +1,49 @@
-import React from "react";
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import Alerta from "../components/Alerta";
+import userAxios from "../config/userAxios";
+import useAuth from "../hooks/useAuth";
 
 const LoginB = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [alerta, setAlerta] = useState({});
+
+  const { setAuth } = useAuth();
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if ([email, password].includes("")) {
+      setAlerta({
+        msg: "Todos los campos son requeridos",
+        error: true,
+      });
+      return;
+    }
+    try {
+      const { data } = await userAxios.post("/usuarios/login", {
+        email: email,
+        password: password,
+      });
+
+      setAlerta({});
+      localStorage.setItem("token", data.token);
+      setAuth(data);
+      navigate("/listado");
+    } catch (error) {
+      if (error.code === "ERR_NETWORK") {
+        setAlerta({
+          msg: "No se puede conectar con el servidor",
+          error: true,
+        });
+      }
+    }
+  };
+
+  const msg = { alerta };
+
   return (
     <>
       <div className="px-4 py-16 mx-auto max-w-screen-xl sm:px-6 lg:px-8">
@@ -8,11 +51,16 @@ const LoginB = () => {
           <h1 className="text-2xl font-bold sm:text-3xl">OVCM</h1>
 
           <p className="mt-4 text-gray-500">Bienvenido</p>
+          {msg && <Alerta alerta={alerta} />}
         </div>
 
-        <form action="" className="max-w-md mx-auto mt-8 mb-0 space-y-4">
+        <form
+          action=""
+          className="max-w-md mx-auto mt-8 mb-0 space-y-4"
+          onSubmit={handleSubmit}
+        >
           <div>
-            <label for="email" className="sr-only">
+            <label htmlFor="email" className="sr-only">
               Email
             </label>
 
@@ -20,7 +68,12 @@ const LoginB = () => {
               <input
                 type="email"
                 className="w-full p-4 pr-12 text-sm border-gray-200 rounded-lg shadow-sm"
-                placeholder="Enter email"
+                placeholder="Email"
+                id="email"
+                name="email"
+                onChange={(e) => {
+                  setEmail(e.target.value);
+                }}
               />
 
               <span className="absolute inset-y-0 inline-flex items-center right-4">
@@ -43,14 +96,19 @@ const LoginB = () => {
           </div>
 
           <div>
-            <label for="password" className="sr-only">
+            <label htmlFor="password" className="sr-only">
               Password
             </label>
             <div className="relative">
               <input
                 type="password"
                 className="w-full p-4 pr-12 text-sm border-gray-200 rounded-lg shadow-sm"
-                placeholder="Enter password"
+                placeholder="Contraseña"
+                id="password"
+                name="password"
+                onChange={(e) => {
+                  setPassword(e.target.value);
+                }}
               />
 
               <span className="absolute inset-y-0 inline-flex items-center right-4">
@@ -79,18 +137,26 @@ const LoginB = () => {
           </div>
 
           <div className="flex items-center justify-between">
-            <p className="text-sm text-gray-500">
-              No account?
-              <a className="underline" href="">
-                Sign up
-              </a>
-            </p>
+            <nav className="lg:flex lg:justify-between">
+              <Link
+                className="block text-center my-5 text-black uppercase text-sm"
+                to="registrar"
+              >
+                No tienes una cuenta? Regístrate
+              </Link>
+              <Link
+                className="block text-center my-5 text-black uppercase text-sm"
+                to="olvide-password"
+              >
+                Olvidé mi password
+              </Link>
+            </nav>
 
             <button
               type="submit"
               className="inline-block px-5 py-3 ml-3 text-sm font-medium text-white bg-blue-500 rounded-lg"
             >
-              Sign in
+              Entrar
             </button>
           </div>
         </form>
