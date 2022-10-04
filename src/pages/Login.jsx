@@ -16,20 +16,20 @@ const Login = () => {
 
   const navigate = useNavigate();
 
-  // useEffect(() => {
-  //   axios
-  //     .get("https://jsonplaceholder.typicode.com/posts")
-  //     .then((response) => {
-  //       return response.data;
-  //       //console.log(response.data);
-  //     })
-  //     .then((data) => {
-  //       console.log(data);
-  //     })
-  //     .catch((error) => {
-  //       console.log(error.response);
-  //     });
-  // }, []);
+  useEffect(() => {
+    axios
+      .get("https://diversidad.biamobile.com/api/web/sdi_seg_usuarios")
+      .then((response) => {
+        return response.data;
+        //console.log(response.data);
+      })
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((error) => {
+        console.log(error.response);
+      });
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
