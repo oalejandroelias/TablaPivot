@@ -18,7 +18,9 @@ const Login = () => {
 
   useEffect(() => {
     axios
-      .get("https://diversidad.biamobile.com/api/web/sdi_seg_usuarios")
+      .get(
+        "https://diversidad.biamobile.com/api/web/sdi_com_configuraciontipos"
+      )
       .then((response) => {
         return response.data;
         //console.log(response.data);

@@ -14,6 +14,7 @@ import ConfirmarCuenta from "./pages/ConfirmarCuenta";
 import { IntervencionesProvider } from "./context/IntervencionesProvider";
 import LoginC from "./pages/LoginC";
 import Encuesta from "./pages/Encuesta";
+import Configuracion from "./pages/Configuracion";
 
 function App() {
   return (
@@ -28,6 +29,8 @@ function App() {
               <Route path="loginc" element={<LoginC />} />
               <Route path="registrar" element={<Registrar />} />
               <Route path="olvide-password" element={<OlvidePassword />} />
+              <Route path="configuracion" element={<Configuracion />} />
+
               <Route
                 path="olvide-password/:token"
                 element={<NuevoPassword />}
