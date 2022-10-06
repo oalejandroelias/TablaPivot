@@ -19,40 +19,39 @@ const Example = () => {
   });
 
   const { intervenciones } = useIntervenciones();
-
   console.log(intervenciones);
 
   /**La API debe poder implementar peticiones de paginado */
-  const { data, isError, isFetching, isLoading } = useQuery(
-    [
-      "table-data",
-      columnFilters,
-      globalFilter,
-      pagination.pageIndex,
-      pagination.pageSize,
-      sorting,
-    ],
-    async () => {
-      //const url = new URL("/api/data", "https://www.material-react-table.com");
-      //const url = new URL("/posts", "https://jsonplaceholder.typicode.com");
-      const url = new URL(
-        "/intervenciones",
-        `${import.meta.env.VITE_BACKEND_URL}/api`
-      );
-      url.searchParams.set(
-        "start",
-        `${pagination.pageIndex * pagination.pageSize}`
-      );
-      url.searchParams.set("size", `${pagination.pageSize}`);
-      url.searchParams.set("filters", JSON.stringify(columnFilters ?? []));
-      url.searchParams.set("globalFilter", globalFilter ?? "");
-      url.searchParams.set("sorting", JSON.stringify(sorting ?? []));
+  // const { data, isError, isFetching, isLoading } = useQuery(
+  //   [
+  //     "table-data",
+  //     columnFilters,
+  //     globalFilter,
+  //     pagination.pageIndex,
+  //     pagination.pageSize,
+  //     sorting,
+  //   ],
+  //   async () => {
+  //     //const url = new URL("/api/data", "https://www.material-react-table.com");
+  //     //const url = new URL("/posts", "https://jsonplaceholder.typicode.com");
+  //     const url = new URL(
+  //       "/intervenciones",
+  //       `${import.meta.env.VITE_BACKEND_URL}/api`
+  //     );
+  //     url.searchParams.set(
+  //       "start",
+  //       `${pagination.pageIndex * pagination.pageSize}`
+  //     );
+  //     url.searchParams.set("size", `${pagination.pageSize}`);
+  //     url.searchParams.set("filters", JSON.stringify(columnFilters ?? []));
+  //     url.searchParams.set("globalFilter", globalFilter ?? "");
+  //     url.searchParams.set("sorting", JSON.stringify(sorting ?? []));
 
-      const { data: axiosData } = await axios.get(url.href);
-      return axiosData;
-    },
-    { keepPreviousData: true }
-  );
+  //     const { data: axiosData } = await axios.get(url.href);
+  //     return axiosData;
+  //   },
+  //   { keepPreviousData: true }
+  // );
 
   //   const columns = useMemo(
   //     () => [
@@ -97,7 +96,7 @@ const Example = () => {
   return (
     <>
       <MaterialReactTable
-        columns={columns}
+        // columns={columns}
         data={data ?? []}
         initialState={{ showColumnFilters: true }}
         manualFiltering

@@ -2,7 +2,7 @@ import { useMemo, useState, useEffect, useContext } from "react";
 
 import DataTable, { createTheme } from "react-data-table-component";
 import FilterComponent from "./FilterComponent";
-import Modal from "./Modal/ModalMap";
+import Modal from "./Modal/Modal";
 import { ThemeContext } from "../context/ThemeContext";
 import "../styles/styles.css";
 
@@ -11,10 +11,10 @@ const Table = (props) => {
   const theme = "light";
 
   const [show_modal, setShow_modal] = useState(false);
-  const [name, setName] = useState("");
-  const [title, setTitle] = useState("");
-  const [abstract, setAbstract] = useState("");
-  const [baseGeoUrl, setBaseGeoUrl] = useState("");
+
+  const [id, setId] = useState(null);
+  const [descripcion, setDescripcion] = useState("");
+  const [activo, setActivo] = useState(null);
 
   const columns = [
     {
@@ -51,14 +51,13 @@ const Table = (props) => {
             className="bg:white dark:bg-slate-900 mb-1 inline-flex px-2 rounded-md items-center ml-4 hover:bg-gray-200 focus:outline-none  text-gray-900 dark:text-white"
             onClick={() => {
               setShow_modal(!show_modal);
-              setTitle(row.Title);
-              setName(row.Name);
-              setAbstract(row.Abstract);
-              setBaseGeoUrl(
-                props.baseGeoUrl
-              ); /**Hacer que sea dinamico para otros servidores */
+              setId(row.idconfiguraciontipo);
+              setDescripcion(row.descripcion);
+              setActivo(row.activo);
             }}
-            style={{ marginRight: "5px" }}>
+            style={{ marginRight: "5px" }}
+            key={row.idconfiguraciontipo}
+          >
             <h1 style={{ color: "blue" }}>Ver</h1>
           </button>
         </>
@@ -166,7 +165,7 @@ const Table = (props) => {
       <DataTable
         className="border-collapse"
         theme={theme}
-        title=""
+        descripcion=""
         columns={columns}
         data={filteredItems}
         defaultSortField="name"
@@ -178,12 +177,12 @@ const Table = (props) => {
         customStyles={customStyles}
       />
       <Modal
+        // key={id}
         show_modal={show_modal}
         setShow_modal={setShow_modal}
-        title={title}
-        name={name}
-        abstract={abstract}
-        baseGeoUrl={props.baseGeoUrl}
+        id={id}
+        descripcion={descripcion}
+        activo={activo}
       />
     </>
   );
