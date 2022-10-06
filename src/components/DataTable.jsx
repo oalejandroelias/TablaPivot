@@ -2,12 +2,13 @@ import { useMemo, useState, useEffect, useContext } from "react";
 
 import DataTable, { createTheme } from "react-data-table-component";
 import FilterComponent from "./FilterComponent";
-import Modal from "./Modal";
+import Modal from "./Modal/ModalMap";
 import { ThemeContext } from "../context/ThemeContext";
 import "../styles/styles.css";
 
 const Table = (props) => {
-  const { theme } = useContext(ThemeContext);
+  //const { theme } = useContext(ThemeContext);
+  const theme = "light";
 
   const [show_modal, setShow_modal] = useState(false);
   const [name, setName] = useState("");
@@ -17,16 +18,16 @@ const Table = (props) => {
 
   const columns = [
     {
-      name: "Titulo",
-      selector: (row) => row.Title,
+      name: "idconfiguraciontipo",
+      selector: (row) => row.idconfiguraciontipo,
       sortable: true,
       grow: 0.8,
       style: "font-weight:bold; font-family: Arial, Helvetica, sans-serif;",
       //maxWidth: "200px"
     },
     {
-      name: "Nombre",
-      selector: (row) => row.Name,
+      name: "descripcion",
+      selector: (row) => row.descripcion,
       sortable: true,
       grow: 0.8,
       hide: "sm",
@@ -34,8 +35,8 @@ const Table = (props) => {
       //maxWidth: "200px"
     },
     {
-      name: "Descripción",
-      selector: (row) => row.Abstract,
+      name: "activo",
+      selector: (row) => row.activo,
       sortable: true,
       grow: 0.8,
       maxWidth: "400px",
@@ -57,8 +58,7 @@ const Table = (props) => {
                 props.baseGeoUrl
               ); /**Hacer que sea dinamico para otros servidores */
             }}
-            style={{ marginRight: "5px" }}
-          >
+            style={{ marginRight: "5px" }}>
             <h1 style={{ color: "blue" }}>Ver</h1>
           </button>
         </>

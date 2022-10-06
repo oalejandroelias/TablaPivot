@@ -1,0 +1,51 @@
+circle,
+rect,
+line {
+  stroke-width: 10px;
+  stroke-linecap: round;
+  fill: transparent;
+}
+
+#svg_animated{
+  width: 800px;
+  text-align: center;
+  position: absolute;
+  z-index: 0;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#svg_animated > pat{
+  stroke: white;
+  stroke-width: 5px;
+}
+
+/** Horizontal*/
+
+.root {
+  position: relative;
+  background-color: black;
+  width: 300vw;
+}
+
+.artist {
+  position: fixed;
+  right: 10px;
+  bottom: 10px;
+  text-align: right;
+  color: #be6657;
+  font-family: monospace;
+  z-index: 10;
+}
+
+.layer {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  background-size: auto 100%;
+  background-repeat: repeat-x;
+  height: 100vh;
+}
+

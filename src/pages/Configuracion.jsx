@@ -50,104 +50,115 @@ const LayerList = () => {
   }, []);
 
   const columns = [
-    { Name: "Copade:356_2021_recort", Title: "356_2021_recort", Abstract: "" },
     {
-      Name: "Copade:NEUQUEN_PROVINCIA",
-      Title: "Departamentos",
-      Abstract:
-        "En la siguiente capa se muestran los Departamentos de la Provincia del Neuquén.",
-    },
-    { Name: "Copade:PROVINCIAS0", Title: "PROVINCIAS", Abstract: "" },
-    {
-      Name: "Copade:Plottier_Topografia_DEM_80cmpix_IGN",
-      Title: "Plottier_Topografia_DEM_80cmpix_IGN",
-      Abstract: "",
+      idconfiguraciontipo: 184,
+      descripcion: "Modalidad de violencia",
+      activo: 1,
     },
     {
-      Name: "Copade:Routers",
-      Title: "routers",
-      Abstract:
-        "La presente capa fue provista por la Oficina Provi…Comunicación (OPTIC) de la Provincia del Neuquén.",
-    },
-    { Name: "Copade:acueductos", Title: "acueductos", Abstract: "" },
-    { Name: "Copade:aeropuertos", Title: "aeropuertos", Abstract: "" },
-    {
-      Name: "Copade:alimentador_7_62kv",
-      Title: "Alimentador 7-62kv",
-      Abstract:
-        "La capa Alimentador 7-62kv fue realizada por la Se… Alta Tensión S.A. (TRANSENER) hasta el año 2020.",
+      idconfiguraciontipo: 185,
+      descripcion: "Tipo de violencia",
+      activo: 1,
     },
     {
-      Name: "Copade:areas_naturales_con_islas",
-      Title: "Áreas Naturales con Islas",
-      Abstract:
-        "La presente capa es producto de la asistencia técn…o rutas, ríos y áreas rurales/urbanas adyacentes.",
+      idconfiguraciontipo: 186,
+      descripcion: "Tipo de documento",
+      activo: 1,
     },
     {
-      Name: "Copade:areas_rurales",
-      Title: "Áreas Rurales",
-      Abstract:
-        "La presente capa es producto de la asistencia técn…rutas, ríos y áreas naturales/urbanas adyacentes.",
+      idconfiguraciontipo: 187,
+      descripcion: "Actividad Laboral",
+      activo: 1,
     },
     {
-      Name: "Copade:areas_urbanas1",
-      Title: "Áreas Urbanas",
-      Abstract:
-        "La presente capa es producto de la asistencia técn…rutas, ríos y áreas naturales/rurales adyacentes.",
+      idconfiguraciontipo: 188,
+      descripcion: "Nivel Educativo",
+      activo: 1,
     },
     {
-      Name: "Copade:b_populares_nqn",
-      Title: "Barrios Populares Nqn",
-      Abstract: "",
-    },
-    { Name: "Copade:bancos", Title: "bancos", Abstract: "" },
-    {
-      Name: "Copade:barrio_san_patricio0",
-      Title: "Barrio de San Patricio del Chañar",
-      Abstract:
-        "La presente capa fue creada desde COPADE con infor…icipio de San Patricio del Chañar en el año 2017.",
+      idconfiguraciontipo: 189,
+      descripcion: "Género Autopercibido",
+      activo: 1,
     },
     {
-      Name: "Copade:barrio_senillosa",
-      Title: "Barrios de Senillosa",
-      Abstract:
-        "La presente capa fue creada desde COPADE con infor…niente del municipio de Senillosa en el año 2017.",
+      idconfiguraciontipo: 190,
+      descripcion: "Orientación sexual",
+      activo: 1,
     },
     {
-      Name: "Copade:barrio_v_angostura1",
-      Title: "Barrio Villa La Angostura",
-      Abstract:
-        "La presente capa fue creada desde COPADE con infor…l municipio de Villa La Angostura en el año 2017.",
+      idconfiguraciontipo: 191,
+      descripcion: "Persona Migrante",
+      activo: 1,
     },
     {
-      Name: "Copade:barrios_alumine",
-      Title: "Barrios de Aluminé",
-      Abstract:
-        "La presente capa fue creada desde COPADE con infor…veniente del municipio de Aluminé en el año 2017.",
+      idconfiguraciontipo: 192,
+      descripcion: "Obra Social",
+      activo: 1,
     },
     {
-      Name: "Copade:barrios_andacollo",
-      Title: "Barrios de Andacollo",
-      Abstract:
-        "La presente capa fue creada desde COPADE con infor…niente del municipio de Andacollo en el año 2017.",
+      idconfiguraciontipo: 193,
+      descripcion: "Posee red de contención",
+      activo: 1,
     },
     {
-      Name: "Copade:barrios_anielo",
-      Title: "Barrios de Añelo",
-      Abstract:
-        "La presente capa fue creada desde COPADE con infor…roveniente del municipio de Añelo en el año 2017.",
+      idconfiguraciontipo: 194,
+      descripcion: "Cambio registral",
+      activo: 1,
     },
     {
-      Name: "Copade:barrios_centenario0",
-      Title: "Barrios de Centenario",
-      Abstract:
-        "La presente capa fue creada desde COPADE con infor…iente del municipio de Centenario en el año 2017.",
+      idconfiguraciontipo: 195,
+      descripcion: "Víctima de violencia",
+      activo: 1,
     },
     {
-      Name: "Copade:barrios_chos_malal",
-      Title: "Barrios de Chos Malal",
-      Abstract:
-        "La presente capa fue creada desde COPADE con infor…iente del municipio de Chos Malal en el año 2017.",
+      idconfiguraciontipo: 196,
+      descripcion: "Vínculo con la persona que ejerció violencia",
+      activo: 1,
+    },
+    {
+      idconfiguraciontipo: 197,
+      descripcion: "Convivencia con la persona que ejerció violencia",
+      activo: 1,
+    },
+    {
+      idconfiguraciontipo: 198,
+      descripcion: "Presencia de niñes",
+      activo: 1,
+    },
+    {
+      idconfiguraciontipo: 199,
+      descripcion: "Frecuencia de la violencia",
+      activo: 1,
+    },
+    {
+      idconfiguraciontipo: 200,
+      descripcion: "Tiempo del maltrato",
+      activo: 1,
+    },
+    {
+      idconfiguraciontipo: 201,
+      descripcion: "Género de la persona que ejerció violencia",
+      activo: 1,
+    },
+    {
+      idconfiguraciontipo: 202,
+      descripcion: "Nivel Educativo de la persona que ejerció violencia",
+      activo: 1,
+    },
+    {
+      idconfiguraciontipo: 203,
+      descripcion: "Actividad laboral de la persona que ejerció violencia",
+      activo: 1,
+    },
+    {
+      idconfiguraciontipo: 204,
+      descripcion: "Acceso al derecho a la salud integral",
+      activo: 1,
+    },
+    {
+      idconfiguraciontipo: 205,
+      descripcion: "Motivo de demanda",
+      activo: 1,
     },
   ];
 
