@@ -15,35 +15,38 @@ import { IntervencionesProvider } from "./context/IntervencionesProvider";
 import LoginC from "./pages/LoginC";
 import Encuesta from "./pages/Encuesta";
 import Configuracion from "./pages/Configuracion";
+import { ConfiguracionesProvider } from "./context/ConfiguracionesProvider";
 
 function App() {
   return (
     <BrowserRouter>
       <AuthProvider>
         <IntervencionesProvider>
-          <Routes>
-            <Route path="/" element={<AuthLayout />}>
-              <Route index element={<Login />} />
-              <Route path="login" element={<Login />} />
-              <Route path="loginb" element={<LoginB />} />
-              <Route path="loginc" element={<LoginC />} />
-              <Route path="registrar" element={<Registrar />} />
-              <Route path="olvide-password" element={<OlvidePassword />} />
-              <Route path="configuracion" element={<Configuracion />} />
+          <ConfiguracionesProvider>
+            <Routes>
+              <Route path="/" element={<AuthLayout />}>
+                <Route index element={<Login />} />
+                <Route path="login" element={<Login />} />
+                <Route path="loginb" element={<LoginB />} />
+                <Route path="loginc" element={<LoginC />} />
+                <Route path="registrar" element={<Registrar />} />
+                <Route path="olvide-password" element={<OlvidePassword />} />
+                <Route path="configuracion" element={<Configuracion />} />
 
-              <Route
-                path="olvide-password/:token"
-                element={<NuevoPassword />}
-              />
-              <Route path="confirmar/:id" element={<ConfirmarCuenta />} />
-            </Route>
-            <Route path="/listado" element={<RutaProtegida />}>
-              <Route index element={<Listado />} />
-            </Route>
-            <Route path="/encuesta">
-              <Route index element={<Encuesta />} />
-            </Route>
-          </Routes>
+                <Route
+                  path="olvide-password/:token"
+                  element={<NuevoPassword />}
+                />
+                <Route path="confirmar/:id" element={<ConfirmarCuenta />} />
+              </Route>
+              <Route path="/listado" element={<RutaProtegida />}>
+                <Route index element={<Listado />} />
+              </Route>
+              <Route path="/encuesta">
+                <Route index element={<Encuesta />} />
+              </Route>
+            </Routes>
+          </ConfiguracionesProvider>
         </IntervencionesProvider>
       </AuthProvider>
     </BrowserRouter>

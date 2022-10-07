@@ -1,63 +1,41 @@
 import { useState } from "react";
+import useConfiguraciones from "../../hooks/useConfiguracion";
 
 const FormConfiguracion = (props) => {
-  const [id, setId] = useState(props.id);
+  const [idconfiguraciontipo, setIdconfiguraciontipo] = useState(props.id);
   const [descripcion, setDescripcion] = useState(props.descripcion);
   const [activo, setActivo] = useState(props.activo);
 
-  const optionsGenero = [
-    {
-      value: "varon_cis",
-      label: "Varon Cis",
-    },
-    {
-      value: "mujer_cis",
-      label: "Mujer Cis",
-    },
-    {
-      value: "varon_trans",
-      label: "Varon Trans",
-    },
-    {
-      value: "mujer_trans",
-      label: "Mujer Trans",
-    },
-    {
-      value: "no_binaria",
-      label: "Persona no binaria",
-    },
-    {
-      value: "intersex",
-      label: "Intersex",
-    },
-  ];
+  const { submitConfiguracion } = useConfiguraciones();
 
-  const optionsOrientacionSexual = [
-    {
-      value: "heterosexual",
-      label: "Heterosexual",
-    },
-    {
-      value: "gay",
-      label: "Gay",
-    },
-    {
-      value: "lesbiana",
-      label: "Lesbiana",
-    },
-    {
-      value: "bisexual",
-      label: "Bisexual",
-    },
-    {
-      value: "pansexual",
-      label: "Pansexual",
-    },
-    {
-      value: "asexual",
-      label: "Asexual",
-    },
-  ];
+  const handleChange = (event) => {
+    if (event.target.checked) {
+      console.log("✅ Checkbox is checked");
+    } else {
+      console.log("⛔️ Checkbox is NOT checked");
+    }
+    setActivo((current) => !current);
+    console.log(activo);
+  };
+
+  const handleSubmit = async (e) => {
+    console.log(idconfiguraciontipo, descripcion, activo);
+    e.preventDefault();
+
+    if ([descripcion, activo].includes("")) {
+      mostrarAlerta({
+        msg: "Todos los campos son requeridos",
+        error: true,
+      });
+      return;
+    }
+    await submitConfiguracion({ idconfiguraciontipo, descripcion, activo });
+
+    setIdconfiguraciontipo(null);
+    setActivo(null);
+    setDescripcion("");
+  };
+
   const optionsDni = [
     {
       value: "dni",
@@ -80,13 +58,6 @@ const FormConfiguracion = (props) => {
       label: "Pasaporte",
     },
   ];
-
-  const [demanda, setDemanda] = useState("");
-  const [nombre, setNombre] = useState("");
-  const [apellido, setApellido] = useState("");
-  const [email, setEmail] = useState("");
-  const [tipoDoc, setTipoDoc] = useState(optionsDni[0].value);
-  const [tipoGenero, setTipoGenero] = useState(optionsGenero[0].value);
 
   return (
     <>
@@ -113,10 +84,10 @@ const FormConfiguracion = (props) => {
             </div> */}
 
             <div className="p-8 bg-white rounded-lg shadow-lg lg:p-12 lg:col-span-3">
-              <form action="" className="space-y-4">
+              <form action="" className="space-y-4" onSubmit={handleSubmit}>
                 <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                   <div>
-                    <label className="" htmlFor="nombre">
+                    <label className="" htmlFor="descripcion">
                       Descripción
                     </label>
                     <input
@@ -133,31 +104,22 @@ const FormConfiguracion = (props) => {
                 </div>
 
                 <div className="text-center grid grid-cols-1 gap-4 sm:grid-cols-3">
-                  <label
-                    for="AcceptConditions"
-                    class="relative h-8 w-16 cursor-pointer"
-                  >
+                  <label htmlFor="activo">
                     <input
                       type="checkbox"
-                      id={id}
-                      value={!activo}
-                      onChange={(e) => {
-                        setActivo(e.target.value);
-                      }}
-                      class="peer sr-only"
+                      value={activo}
+                      onChange={handleChange}
+                      id="activo"
+                      name="activo"
                     />
-
-                    <span class="absolute inset-0 rounded-full bg-blue-400 transition peer-checked:bg-blue-600"></span>
-
-                    <span class="absolute inset-0 m-1 h-6 w-6 rounded-full bg-white transition peer-checked:translate-x-8"></span>
+                    Activo
                   </label>
                 </div>
 
                 <div className="mt-4">
                   <button
                     type="submit"
-                    className="inline-flex items-center justify-center w-full px-5 py-3 text-white bg-black rounded-lg sm:w-auto"
-                  >
+                    className="inline-flex items-center justify-center w-full px-5 py-3 text-white bg-black rounded-lg sm:w-auto">
                     <span className="font-medium"> Continuar </span>
 
                     <svg
@@ -165,8 +127,7 @@ const FormConfiguracion = (props) => {
                       className="w-5 h-5 ml-3"
                       fill="none"
                       viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
+                      stroke="currentColor">
                       <path
                         strokeLinecap="round"
                         strokeLinejoin="round"

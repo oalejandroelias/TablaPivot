@@ -32,12 +32,12 @@ const AuthProvider = ({ children }) => {
       } catch (error) {
         if (error.response) {
           /**Ver si el alert sirve aca */
-          if (error.code === "ERR_NETWORK") {
-            setAlerta({
-              msg: "No se puede conectar con el servidor",
-              error: true,
-            });
-          }
+          // if (error.code === "ERR_NETWORK") {
+          //   setAlerta({
+          //     msg: "No se puede conectar con el servidor",
+          //     error: true,
+          //   });
+          // }
           /**Ver si el alert sirve aca */
           // 👇️ log status code here
           console.log(error.response.status);
@@ -66,8 +66,7 @@ const AuthProvider = ({ children }) => {
         auth,
         setAuth,
         cargando,
-      }}
-    >
+      }}>
       {children}
     </AuthContext.Provider>
   );
