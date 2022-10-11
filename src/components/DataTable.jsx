@@ -5,6 +5,7 @@ import FilterComponent from "./FilterComponent";
 import Modal from "./Modal/Modal";
 import { ThemeContext } from "../context/ThemeContext";
 import "../styles/styles.css";
+import { GrFormAdd } from "react-icons/gr";
 
 const Table = (props) => {
   //const { theme } = useContext(ThemeContext);
@@ -92,6 +93,23 @@ const Table = (props) => {
     );
   }, [filterText, resetPaginationToggle]);
 
+  const addNew = () => {
+    const handleClear = () => {
+      setShow_modal(!show_modal);
+      setId(null);
+      setDescripcion("");
+      setActivo(true);
+    };
+
+    return (
+      <FilterComponent
+        onFilter={(e) => setFilterText(e.target.value)}
+        onClear={handleClear}
+        filterText={filterText}
+      />
+    );
+  };
+
   createTheme("dark", {
     striped: {
       default: "transparent",
@@ -162,6 +180,23 @@ const Table = (props) => {
 
   return (
     <>
+      <div className="flex items-center justify-between">
+        <button
+          className="group relative inline-block text-sm font-medium text-white focus:outline-none focus:ring"
+          onClick={() => {
+            setShow_modal(!show_modal);
+            setId(row.idconfiguraciontipo);
+            setDescripcion(row.descripcion);
+            setActivo(row.activo);
+          }}
+        >
+          <span className="absolute inset-0 border border-blue-600 group-active:border-blue-500"></span>
+          <span className="block border border-blue-600 bg-blue-600 px-12 py-3 transition-transform active:border-blue-500 active:bg-blue-500 group-hover:-translate-x-1 group-hover:-translate-y-1">
+            Nuevo
+          </span>
+        </button>
+      </div>
+
       <DataTable
         className="border-collapse"
         theme={theme}

@@ -45,8 +45,10 @@ const ConfiguracionesProvider = ({ children }) => {
   };
 
   const submitConfiguracion = async (configuracion) => {
+    console.log(configuracion);
     if (configuracion.idconfiguraciontipo) {
-      await editarConfiguracion(configuracion);
+      // await editarConfiguracion(configuracion);
+      await nuevaConfiguracion(configuracion);
     } else {
       await nuevaConfiguracion(configuracion);
     }
