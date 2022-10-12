@@ -5,7 +5,7 @@ import FilterComponent from "./FilterComponent";
 import Modal from "./Modal/Modal";
 import { ThemeContext } from "../context/ThemeContext";
 import "../styles/styles.css";
-import { GrFormAdd } from "react-icons/gr";
+import { GrFormAdd, GrEdit } from "react-icons/gr";
 
 const Table = (props) => {
   //const { theme } = useContext(ThemeContext);
@@ -48,19 +48,22 @@ const Table = (props) => {
       button: true,
       cell: (row) => (
         <>
-          <button
-            className="bg:white dark:bg-slate-900 mb-1 inline-flex px-2 rounded-md items-center ml-4 hover:bg-gray-200 focus:outline-none  text-gray-900 dark:text-white"
-            onClick={() => {
-              setShow_modal(!show_modal);
-              setId(row.idconfiguraciontipo);
-              setDescripcion(row.descripcion);
-              setActivo(row.activo);
-            }}
-            style={{ marginRight: "5px" }}
-            key={row.idconfiguraciontipo}
-          >
-            <h1 style={{ color: "blue" }}>Ver</h1>
-          </button>
+          <>
+            <button
+              className="bg:white dark:bg-slate-900 mb-1 inline-flex px-2 rounded-md items-center ml-4 hover:text-red focus:outline-none  text-gray-900 dark:text-white"
+              onClick={() => {
+                setShow_modal(!show_modal);
+                setId(row.idconfiguraciontipo);
+                setDescripcion(row.descripcion);
+                setActivo(row.activo ? 1 : 0);
+              }}
+              style={{ marginRight: "5px" }}
+              key={row.idconfiguraciontipo}
+            >
+              <GrEdit className="hover:color-red" />
+            </button>
+          </>
+          <></>
         </>
       ),
       grow: 0.1,
@@ -185,9 +188,10 @@ const Table = (props) => {
           className="group relative inline-block text-sm font-medium text-white focus:outline-none focus:ring"
           onClick={() => {
             setShow_modal(!show_modal);
-            setId(row.idconfiguraciontipo);
-            setDescripcion(row.descripcion);
-            setActivo(row.activo);
+
+            setId(null);
+            setDescripcion("");
+            setActivo(false);
           }}
         >
           <span className="absolute inset-0 border border-blue-600 group-active:border-blue-500"></span>

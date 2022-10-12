@@ -22,6 +22,8 @@ const ConfiguracionesProvider = ({ children }) => {
 
       //const {data} = await axios.post("https://diversidad.biamobile.com/api/web/sdi_com_configuracions", config)
 
+      configuracion.activo = configuracion.activo ? 1 : 0; //Tengo que convertir a interger
+
       const { data } = await axios.post(
         "https://diversidad.biamobile.com/api/web/sdi_com_configuraciontipos",
         configuracion
@@ -35,6 +37,7 @@ const ConfiguracionesProvider = ({ children }) => {
 
   const editarConfiguracion = async (configuracion) => {
     try {
+      configuracion.activo = configuracion.activo ? 1 : 0; //Tengo que convertir a interger
       const { data } = await axios.put(
         `https://diversidad.biamobile.com/api/web/sdi_com_configuraciontipos/${configuracion.idconfiguraciontipo}`,
         configuracion
@@ -47,8 +50,7 @@ const ConfiguracionesProvider = ({ children }) => {
   const submitConfiguracion = async (configuracion) => {
     console.log(configuracion);
     if (configuracion.idconfiguraciontipo) {
-      // await editarConfiguracion(configuracion);
-      await nuevaConfiguracion(configuracion);
+      await editarConfiguracion(configuracion);
     } else {
       await nuevaConfiguracion(configuracion);
     }

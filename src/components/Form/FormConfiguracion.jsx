@@ -1,12 +1,15 @@
 import { useState } from "react";
 import useConfiguraciones from "../../hooks/useConfiguracion";
+import Alerta from "../../components/Alerta";
 
 const FormConfiguracion = (props) => {
   const [idconfiguraciontipo, setIdconfiguraciontipo] = useState(props.id);
   const [descripcion, setDescripcion] = useState(props.descripcion);
   const [activo, setActivo] = useState(props.activo);
-
+  const [alerta, setAlerta] = useState({});
   const { submitConfiguracion } = useConfiguraciones();
+
+  console.log(activo);
 
   const handleChange = (event) => {
     if (event.target.checked) {
@@ -14,7 +17,7 @@ const FormConfiguracion = (props) => {
     } else {
       console.log("⛔️ Checkbox is NOT checked");
     }
-    setActivo((current) => !current);
+    setActivo((activo) => !activo);
     console.log(activo);
   };
 
@@ -32,7 +35,7 @@ const FormConfiguracion = (props) => {
     await submitConfiguracion({ idconfiguraciontipo, descripcion, activo });
 
     setIdconfiguraciontipo(null);
-    setActivo(null);
+    setActivo(0);
     setDescripcion("");
   };
 
@@ -62,9 +65,7 @@ const FormConfiguracion = (props) => {
   return (
     <>
       <section className="">
-        <div className="px-4 py-16 mx-auto max-w-screen-xl sm:px-6 lg:px-8">
-          <div className="">
-            {/* <div className="lg:py-12 lg:col-span-2">
+        {/* <div className="lg:py-12 lg:col-span-2">
               <p className="max-w-xl text-lg">
                 At the same time, the fact that we are wholly owned and totally
                 independent from manufacturer and other group control gives you
@@ -83,63 +84,48 @@ const FormConfiguracion = (props) => {
               </div>
             </div> */}
 
-            <div className="p-8 bg-white rounded-lg shadow-lg lg:p-12 lg:col-span-3">
-              <form action="" className="space-y-4" onSubmit={handleSubmit}>
-                <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                  <div>
-                    <label className="" htmlFor="descripcion">
-                      Descripción
-                    </label>
-                    <input
-                      className="w-full rounded bg-transparent border border-black dark:border-white focus:border-pink-700 dark:focus:border-pink-700 text-base outline-none text-black dark:text-white py-1 px-3 leading-8 transition-colors"
-                      placeholder="Nombres Autopercibidos"
-                      type="text"
-                      id="descripcion"
-                      value={descripcion}
-                      onChange={(e) => {
-                        setDescripcion(e.target.value);
-                      }}
-                    />
-                  </div>
-                </div>
-
-                <div className="text-center grid grid-cols-1 gap-4 sm:grid-cols-3">
-                  <label htmlFor="activo">
-                    <input
-                      type="checkbox"
-                      value={activo}
-                      onChange={handleChange}
-                      id="activo"
-                      name="activo"
-                    />
-                    Activo
-                  </label>
-                </div>
-
-                <div className="mt-4">
-                  <button
-                    type="submit"
-                    className="inline-flex items-center justify-center w-full px-5 py-3 text-white bg-black rounded-lg sm:w-auto">
-                    <span className="font-medium"> Continuar </span>
-
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="w-5 h-5 ml-3"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor">
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2"
-                        d="M14 5l7 7m0 0l-7 7m7-7H3"
-                      />
-                    </svg>
-                  </button>
-                </div>
-              </form>
+        <div className="p-8 bg-white lg:col-span-3">
+          <form action="" className="space-y-4" onSubmit={handleSubmit}>
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 items-center">
+              <div>
+                <label className="" htmlFor="descripcion">
+                  Descripción
+                </label>
+                <input
+                  className="w-full rounded bg-transparent border border-black dark:border-white focus:border-pink-700 dark:focus:border-pink-700 text-base outline-none text-black dark:text-white py-1 px-3 leading-8 transition-colors"
+                  placeholder="Nombres Autopercibidos"
+                  type="text"
+                  id="descripcion"
+                  value={descripcion}
+                  onChange={(e) => {
+                    setDescripcion(e.target.value);
+                  }}
+                />
+              </div>
+              <div className="text-center grid grid-cols-1 gap-4 sm:grid-cols-3">
+                <label htmlFor="activo">
+                  <input
+                    type="checkbox"
+                    //value={activo === 1 ? true : false}
+                    defaultChecked={activo}
+                    onChange={handleChange}
+                    id="activo"
+                    name="activo"
+                  />
+                  Activo
+                </label>
+              </div>
             </div>
-          </div>
+
+            <div className="mt-4">
+              <button
+                type="submit"
+                className="inline-flex items-center justify-center w-full px-5 py-3 text-white bg-black rounded-lg sm:w-auto"
+              >
+                <span className="font-medium"> Actualizar </span>
+              </button>
+            </div>
+          </form>
         </div>
       </section>
     </>
