@@ -24,7 +24,7 @@ function App() {
         <IntervencionesProvider>
           <ConfiguracionesProvider>
             <Routes>
-              <Route path="/" element={<Configuracion />}>
+              <Route path="/" element={<AuthLayout />}>
                 <Route index element={<Login />} />
                 <Route path="login" element={<Login />} />
                 <Route path="loginb" element={<LoginB />} />
