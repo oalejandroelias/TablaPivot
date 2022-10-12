@@ -39,29 +39,6 @@ const FormConfiguracion = (props) => {
     setDescripcion("");
   };
 
-  const optionsDni = [
-    {
-      value: "dni",
-      label: "DNI/DU",
-    },
-    {
-      value: "lc",
-      label: "LC",
-    },
-    {
-      value: "le",
-      label: "LE",
-    },
-    {
-      value: "ci",
-      label: "CI",
-    },
-    {
-      value: "pasaporte",
-      label: "Pasaporte",
-    },
-  ];
-
   return (
     <>
       <section className="">

@@ -16,6 +16,8 @@ import LoginC from "./pages/LoginC";
 import Encuesta from "./pages/Encuesta";
 import Configuracion from "./pages/Configuracion";
 import { ConfiguracionesProvider } from "./context/ConfiguracionesProvider";
+import ConfiguracionTipo from "./pages/ConfiguracionTipo";
+import Links from "./pages/Links";
 
 function App() {
   return (
@@ -25,13 +27,17 @@ function App() {
           <ConfiguracionesProvider>
             <Routes>
               <Route path="/" element={<AuthLayout />}>
-                <Route index element={<Login />} />
+                <Route index element={<Links />} />
                 <Route path="login" element={<Login />} />
                 <Route path="loginb" element={<LoginB />} />
                 <Route path="loginc" element={<LoginC />} />
                 <Route path="registrar" element={<Registrar />} />
                 <Route path="olvide-password" element={<OlvidePassword />} />
                 <Route path="configuracion" element={<Configuracion />} />
+                <Route
+                  path="configuracion-tipo"
+                  element={<ConfiguracionTipo />}
+                />
 
                 <Route
                   path="olvide-password/:token"

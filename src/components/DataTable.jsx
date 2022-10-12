@@ -19,6 +19,14 @@ const Table = (props) => {
 
   const columns = [
     {
+      name: "idconfiguracion",
+      selector: (row) => row.idconfiguracion,
+      sortable: true,
+      grow: 0.8,
+      style: "font-weight:bold; font-family: Arial, Helvetica, sans-serif;",
+      //maxWidth: "200px"
+    },
+    {
       name: "idconfiguraciontipo",
       selector: (row) => row.idconfiguraciontipo,
       sortable: true,

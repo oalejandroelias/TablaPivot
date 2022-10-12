@@ -4,7 +4,7 @@ import styled from "styled-components";
 import Table from "../components/DataTable";
 import axios from "axios";
 
-const LayerList = () => {
+const Configuracion = () => {
   const clickhandler = (name) => console.log("delete", name);
   const [capas, setCapas] = useState([]);
   const [baseGeoUrl, setbaseGeoUrl] = useState(
@@ -13,50 +13,9 @@ const LayerList = () => {
 
   const [data, setData] = useState([]);
 
-  //const baseGeoUrl = "http://sigepen.neuquen.gov.ar:8080/geoserver/ows?service=wms&version=1.3.0&request=GetCapabilities";
-  //const baseGeoUrl = "http://aicsig.neuquen.gov.ar:8080/geoserver/ows?service=wms&version=1.3.0&request=GetCapabilities";
-
-  // useEffect(() => {
-  //   const getXMLResponse = async () => {
-  //     const resp = await fetch(
-  //       baseGeoUrl + "?service=wms&version=1.3.0&request=GetCapabilities"
-  //     )
-  //       .then((response) => response.text())
-  //       .then((textResponse) => {
-  //         const parser = new XMLParser();
-  //         let obj = parser.parse(textResponse);
-  //         setCapas(obj.WMS_Capabilities.Capability.Layer.Layer);
-  //         // console.log("AAA")
-  //         // console.log(obj.WMS_Capabilities.Capability)
-  //         // console.table(obj.WMS_Capabilities.Capability.Layer.Layer[0])
-  //       })
-  //       .catch((error) => {
-  //         console.log(error);
-  //       });
-  //   };
-
-  //   // const getXMLResponse = async () => {
-  //   //   const resp = axios.get(baseGeoUrl).then((response) => {
-
-  //   //     const parser = new XMLParser();
-  //   //     let obj = parser.parse(response.data);
-  //   //     console.log(obj)
-  //   //     setCapas(obj.WMS_Capabilities.Capability.Layer.Layer);
-
-  //   //   })
-  //   //     .catch((error) => {
-  //   //       console.log(error);
-  //   //     });
-  //   // };
-
-  //   getXMLResponse();
-  // }, []);
-
   useEffect(() => {
     axios
-      .get(
-        "https://diversidad.biamobile.com/api/web/sdi_com_configuraciontipos"
-      )
+      .get("https://diversidad.biamobile.com/api/web/sdi_com_Configuracions")
       .then((response) => {
         setData(response.data);
         return response.data;
@@ -77,4 +36,4 @@ const LayerList = () => {
   );
 };
 
-export default LayerList;
+export default Configuracion;
